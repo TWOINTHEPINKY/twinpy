@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* Настраиваем наши кастомные цвета для Tailwind v4 */
+@theme {
+  --color-twinpy-bg: var(--twinpy-bg);
+  --color-twinpy-surface: var(--twinpy-surface);
+  --color-twinpy-text: var(--twinpy-text);
+  --color-twinpy-muted: var(--twinpy-text-muted);
+  --color-twinpy-purple: #6B46C1;
+  --color-twinpy-neon: #FF006E;
+  --color-twinpy-turquoise: #00F5D4;
+  --color-twinpy-gold: #FFD700;
+}
+
+/* Цвета по умолчанию (Тёмная тема, как мы и хотели) */
+:root {
+  --twinpy-bg: #0F0F1A;
+  --twinpy-surface: #1A1A2E;
+  --twinpy-text: #F8F9FA;
+  --twinpy-text-muted: #A0A0B0;
+}
+
+/* Цвета для светлой темы (будем переключать через класс .light) */
+.light {
+  --twinpy-bg: #F8F9FA;
+  --twinpy-surface: #FFFFFF;
+  --twinpy-text: #1A1A2E;
+  --twinpy-text-muted: #4A4A68;
+}
+
+body {
+  background-color: var(--twinpy-bg);
+  color: var(--twinpy-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Кастомный скроллбар в стиле Twinpy */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--twinpy-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #6B46C1, #FF006E);
+  border-radius: 4px;
+}
