@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Twinpy
 
-## Getting Started
+Twinpy — Next.js-приложение для честных оценок фильмов, рецензий и цифровых билетов.
 
-First, run the development server:
+## Требования
+
+- Node.js 20.9 или новее
+- npm
+
+## Локальный запуск
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Перед публикацией проверьте проект:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Learn More
+## Запуск на сервере
 
-To learn more about Next.js, take a look at the following resources:
+Для обычного VPS с Node.js:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git clone <URL_ВАШЕГО_РЕПОЗИТОРИЯ>
+cd twinpy
+npm ci
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+По умолчанию Next.js слушает порт `3000`. Для постоянной работы используйте PM2 или systemd, а перед приложением поставьте Nginx с HTTPS-прокси на `localhost:3000`.
 
-## Deploy on Vercel
+Пример с PM2:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm install --global pm2
+pm2 start npm --name twinpy -- start
+pm2 save
+pm2 startup
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Как выкатывать изменения
+
+```bash
+git pull origin main
+npm ci
+npm run lint
+npm run typecheck
+npm run build
+pm2 restart twinpy
+```
+
+Если используется другой процесс-менеджер, перезапустите сервис после `npm run build`. Папку `.next` вручную переносить не нужно: она создаётся заново на сервере.
+
+## Данные профиля
+
+Оценки, рецензии и билеты сейчас сохраняются в `localStorage` браузера через Zustand Persist. Это удобно для демо, но данные не являются серверными и не синхронизируются между устройствами. Для production-аккаунтов понадобится API и база данных.

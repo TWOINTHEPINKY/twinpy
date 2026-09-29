@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MovieRatingForm } from '@/components/rating/MovieRatingForm';
+import { useI18n } from '@/lib/i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ interface MovieData {
 }
 
 export default function CassetteAnimation({ movieData, movieId }: { movieData: MovieData, movieId: string }) {
+  const { t } = useI18n();
   const animContainerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -84,11 +86,11 @@ export default function CassetteAnimation({ movieData, movieId }: { movieData: M
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-twinpy-text mb-2 text-center">{movieData.title}</h1>
             <p className="text-twinpy-neon text-xl mb-6">{movieData.originalTitle} ({movieData.year})</p>
-            <p className="text-twinpy-muted text-lg mb-2">Режиссёр: <span className="text-twinpy-text">{movieData.director}</span></p>
+            <p className="text-twinpy-muted text-lg mb-2">{t('director')} <span className="text-twinpy-text">{movieData.director}</span></p>
             <p className="text-twinpy-text/80 text-lg leading-relaxed max-w-2xl mx-auto text-center">
               {movieData.synopsis}
             </p>
-            <div className="mt-8 text-twinpy-gold text-sm animate-pulse">↓ Скролль вниз для оценки ↓</div>
+            <div className="mt-8 text-twinpy-gold text-sm animate-pulse">{t('scrollToRate')}</div>
           </div>
 
         </div>

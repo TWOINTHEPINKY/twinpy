@@ -4,11 +4,13 @@ import { useMemo } from 'react';
 import { mockMovies } from '@/lib/mockData';
 import { useMovieStore } from '@/store/movieStore';
 import MovieCard from '@/components/movie/MovieCard';
+import { useI18n } from '@/lib/i18n';
 
 // Собираем все уникальные жанры
 const allGenres = Array.from(new Set(mockMovies.flatMap((m) => m.genres))).sort();
 
 export default function MoviesPage() {
+  const { t } = useI18n();
   const { searchQuery, selectedGenre, minRating, setSearchQuery, setSelectedGenre, setMinRating, resetFilters } = useMovieStore();
 
   // Фильтрация фильмов
@@ -29,10 +31,10 @@ export default function MoviesPage() {
         <div className="mb-12 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
             <span className="bg-gradient-to-r from-twinpy-neon via-twinpy-purple to-twinpy-turquoise bg-clip-text text-transparent">
-              Каталог
+              {t('catalogTitle')}
             </span>
           </h1>
-          <p className="text-twinpy-muted text-lg">Выбери фильм и дай своё честное обещание</p>
+          <p className="text-twinpy-muted text-lg">{t('catalogSubtitle')}</p>
         </div>
 
         {/* Панель фильтров */}
@@ -41,7 +43,7 @@ export default function MoviesPage() {
           <div className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
-              placeholder="Поиск по названию..."
+              placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-twinpy-bg border border-twinpy-purple/30 rounded-xl px-5 py-3 text-twinpy-text focus:outline-none focus:ring-2 focus:ring-twinpy-neon transition-all"
@@ -53,7 +55,7 @@ export default function MoviesPage() {
               onChange={(e) => setSelectedGenre(e.target.value || null)}
               className="bg-twinpy-bg border border-twinpy-purple/30 rounded-xl px-5 py-3 text-twinpy-text focus:outline-none focus:ring-2 focus:ring-twinpy-turquoise transition-all"
             >
-              <option value="">Все жанры</option>
+              <option value="">{t('allGenres')}</option>
               {allGenres.map((genre) => (
                 <option key={genre} value={genre}>{genre}</option>
               ))}
@@ -65,10 +67,10 @@ export default function MoviesPage() {
               onChange={(e) => setMinRating(Number(e.target.value))}
               className="bg-twinpy-bg border border-twinpy-purple/30 rounded-xl px-5 py-3 text-twinpy-text focus:outline-none focus:ring-2 focus:ring-twinpy-gold transition-all"
             >
-              <option value={0}>Любой рейтинг</option>
-              <option value={7}>От 7.0</option>
-              <option value={8}>От 8.0</option>
-              <option value={9}>От 9.0</option>
+              <option value={0}>{t('anyRating')}</option>
+              <option value={7}>{t('from7')}</option>
+              <option value={8}>{t('from8')}</option>
+              <option value={9}>{t('from9')}</option>
             </select>
 
             {/* Сброс */}
@@ -76,13 +78,13 @@ export default function MoviesPage() {
               onClick={resetFilters}
               className="px-6 py-3 rounded-xl border border-twinpy-neon/50 text-twinpy-neon hover:bg-twinpy-neon hover:text-white transition-all"
             >
-              Сбросить
+              {t('reset')}
             </button>
           </div>
 
           {/* Счётчик */}
           <div className="text-twinpy-muted text-sm">
-            Найдено фильмов: <span className="text-twinpy-gold font-bold">{filteredMovies.length}</span>
+            {t('foundMovies')} <span className="text-twinpy-gold font-bold">{filteredMovies.length}</span>
           </div>
         </div>
 
@@ -95,8 +97,8 @@ export default function MoviesPage() {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-twinpy-muted text-xl">Ничего не найдено 🎭</p>
-            <p className="text-twinpy-muted text-sm mt-2">Попробуй изменить фильтры</p>
+            <p className="text-twinpy-muted text-xl">{t('noMovies')}</p>
+            <p className="text-twinpy-muted text-sm mt-2">{t('changeFilters')}</p>
           </div>
         )}
       </div>

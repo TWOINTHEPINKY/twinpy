@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useI18n } from '@/lib/i18n';
 
 interface TicketProps {
   movieTitle: string;
@@ -12,6 +13,8 @@ interface TicketProps {
 }
 
 export default function SurrealTicket({ movieTitle, cinema, date, time, seat, color }: TicketProps) {
+  const { t } = useI18n();
+
   return (
     <motion.div 
       whileHover={{ scale: 1.02, rotate: 1 }}
@@ -32,11 +35,11 @@ export default function SurrealTicket({ movieTitle, cinema, date, time, seat, co
             {/* Левая часть: Информация */}
             <div className="flex-1 space-y-4">
               <div>
-                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">Фильм</p>
+                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">{t('film')}</p>
                 <h3 className="text-xl font-bold text-twinpy-text leading-tight">{movieTitle}</h3>
               </div>
               <div>
-                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">Кинотеатр</p>
+                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">{t('theater')}</p>
                 <p className="text-twinpy-text font-medium">{cinema}</p>
               </div>
             </div>
@@ -45,16 +48,16 @@ export default function SurrealTicket({ movieTitle, cinema, date, time, seat, co
             <div className="flex-1 space-y-4 md:border-l md:border-twinpy-surface/30 md:pl-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">Дата</p>
+                  <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">{t('date')}</p>
                   <p className="text-twinpy-gold font-bold">{date}</p>
                 </div>
                 <div>
-                  <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">Время</p>
+                  <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">{t('time')}</p>
                   <p className="text-twinpy-text font-bold">{time}</p>
                 </div>
               </div>
               <div>
-                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">Место</p>
+                <p className="text-twinpy-muted text-xs uppercase tracking-widest mb-1">{t('seat')}</p>
                 <p className="text-twinpy-turquoise font-mono text-lg tracking-wider">{seat}</p>
               </div>
             </div>

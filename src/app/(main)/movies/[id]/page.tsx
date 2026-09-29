@@ -1,6 +1,7 @@
 import { mockMovies } from '@/lib/mockData';
 import CassetteAnimation from '@/components/movie/CassetteAnimation';
 import Link from 'next/link';
+import BackToCatalog from '@/components/layout/BackToCatalog';
 
 // Добавляем async и меняем тип params на Promise
 export default async function MoviePage({ params }: { params: Promise<{ id: string }> }) {
@@ -29,9 +30,7 @@ export default async function MoviePage({ params }: { params: Promise<{ id: stri
     <div className="min-h-screen bg-twinpy-bg">
       {/* Кнопка "Назад" */}
       <div className="fixed top-24 left-6 z-50">
-        <Link href="/movies" className="flex items-center gap-2 text-twinpy-muted hover:text-twinpy-neon transition-colors bg-twinpy-bg/50 backdrop-blur-sm px-4 py-2 rounded-full">
-          <span>←</span> Назад к каталогу
-        </Link>
+        <BackToCatalog />
       </div>
 
       {/* Анимация и контент */}

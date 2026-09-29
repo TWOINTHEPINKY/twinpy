@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useMovieStore, Ticket } from '@/store/movieStore';
+import { useMovieStore } from '@/store/movieStore';
 import { mockMovies } from '@/lib/mockData';
 import SurrealTicket from '@/components/tickets/SurrealTicket';
 import Link from 'next/link';
+import { useI18n } from '@/lib/i18n';
 
 export default function ProfilePage() {
+  const { t } = useI18n();
   const { ratedMovies, tickets, addTicket } = useMovieStore();
   const [isAddingTicket, setIsAddingTicket] = useState(false);
   
@@ -47,21 +49,21 @@ export default function ProfilePage() {
             </div>
           </div>
           <div className="text-center md:text-left flex-1">
-            <h1 className="text-4xl font-bold text-twinpy-text mb-2">Киноман Сновидец</h1>
-            <p className="text-twinpy-muted mb-6">Даю честные обещания кинематографу с 2024 года.</p>
+            <h1 className="text-4xl font-bold text-twinpy-text mb-2">{t('profileName')}</h1>
+            <p className="text-twinpy-muted mb-6">{t('profileBio')}</p>
             
             <div className="flex flex-wrap justify-center md:justify-start gap-6">
               <div className="bg-twinpy-surface/30 px-6 py-3 rounded-xl border border-twinpy-purple/30 text-center">
                 <p className="text-2xl font-bold text-twinpy-gold">{totalRated}</p>
-                <p className="text-xs text-twinpy-muted uppercase tracking-wider">Обещаний дано</p>
+                <p className="text-xs text-twinpy-muted uppercase tracking-wider">{t('promises')}</p>
               </div>
               <div className="bg-twinpy-surface/30 px-6 py-3 rounded-xl border border-twinpy-turquoise/30 text-center">
                 <p className="text-2xl font-bold text-twinpy-turquoise">{avgRating}</p>
-                <p className="text-xs text-twinpy-muted uppercase tracking-wider">Средний рейтинг</p>
+                <p className="text-xs text-twinpy-muted uppercase tracking-wider">{t('averageRating')}</p>
               </div>
               <div className="bg-twinpy-surface/30 px-6 py-3 rounded-xl border border-twinpy-neon/30 text-center">
                 <p className="text-2xl font-bold text-twinpy-neon">{tickets.length}</p>
-                <p className="text-xs text-twinpy-muted uppercase tracking-wider">Билетов</p>
+                <p className="text-xs text-twinpy-muted uppercase tracking-wider">{t('tickets')}</p>
               </div>
             </div>
           </div>
@@ -71,13 +73,13 @@ export default function ProfilePage() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-twinpy-text flex items-center gap-3">
-              <span className="text-twinpy-gold">🎟️</span> Мои цифровые артефакты
+              <span className="text-twinpy-gold">🎟️</span> {t('ticketsTitle')}
             </h2>
             <button 
               onClick={() => setIsAddingTicket(!isAddingTicket)}
               className="px-4 py-2 rounded-lg border border-twinpy-turquoise text-twinpy-turquoise hover:bg-twinpy-turquoise hover:text-twinpy-bg transition-all text-sm"
             >
-              {isAddingTicket ? 'Отмена' : '+ Добавить билет'}
+              {isAddingTicket ? t('cancel') : t('addTicket')}
             </button>
           </div>
 
@@ -85,33 +87,25 @@ export default function ProfilePage() {
           {isAddingTicket && (
             <form onSubmit={handleAddTicket} className="mb-8 p-6 bg-twinpy-surface/30 rounded-xl border border-twinpy-turquoise/30 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  placeholder="Название фильма"
-                  value={newTicket.movieTitle}
-                  onChange={(e) => setNewTicket({...newTicket, movieTitle: e.target.value})}
-                  className="bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none"
-                />
-                <input
-                  placeholder="Кинотеатр"
-                  value={newTicket.cinema}
-                  onChange={(e) => setNewTicket({...newTicket, cinema: e.target.value})}
-                  className="bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none"
-                />
-                <input
-                  type="date"
-                  value={newTicket.date}
-                  onChange={(e) => setNewTicket({...newTicket, date: e.target.value})}
-                  className="bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none"
-                />
-                <input
-                  type="time"
-                  value={newTicket.time}
-                  onChange={(e) => setNewTicket({...newTicket, time: e.target.value})}
-                  className="bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none"
-                />
+                <label className="space-y-1">
+                  <span className="text-sm text-twinpy-muted">{t('movieTitle')}</span>
+                  <input required value={newTicket.movieTitle} onChange={(e) => setNewTicket({...newTicket, movieTitle: e.target.value})} className="w-full bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-sm text-twinpy-muted">{t('cinema')}</span>
+                  <input required value={newTicket.cinema} onChange={(e) => setNewTicket({...newTicket, cinema: e.target.value})} className="w-full bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-sm text-twinpy-muted">{t('date')}</span>
+                  <input type="date" value={newTicket.date} onChange={(e) => setNewTicket({...newTicket, date: e.target.value})} className="w-full bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none" />
+                </label>
+                <label className="space-y-1">
+                  <span className="text-sm text-twinpy-muted">{t('time')}</span>
+                  <input type="time" value={newTicket.time} onChange={(e) => setNewTicket({...newTicket, time: e.target.value})} className="w-full bg-twinpy-bg border border-twinpy-surface rounded-lg px-4 py-2 text-twinpy-text focus:ring-2 focus:ring-twinpy-turquoise outline-none" />
+                </label>
               </div>
               <button type="submit" className="w-full py-3 bg-twinpy-turquoise text-twinpy-bg font-bold rounded-lg hover:opacity-90 transition-opacity">
-                Сохранить артефакт
+                {t('saveArtifact')}
               </button>
             </form>
           )}
@@ -123,14 +117,14 @@ export default function ProfilePage() {
               ))}
             </div>
           ) : (
-            <p className="text-twinpy-muted text-center py-10">Пока нет сохраненных билетов.</p>
+            <p className="text-twinpy-muted text-center py-10">{t('noTickets')}</p>
           )}
         </div>
 
         {/* Секция: История обещаний */}
         <div>
           <h2 className="text-2xl font-bold text-twinpy-text mb-6 flex items-center gap-3">
-            <span className="text-twinpy-neon">🤙</span> История обещаний
+            <span className="text-twinpy-neon">🤙</span> {t('history')}
           </h2>
           {ratedMovies.length > 0 ? (
             <div className="space-y-4">
@@ -145,6 +139,7 @@ export default function ProfilePage() {
                         <div>
                           <h3 className="font-bold text-twinpy-text group-hover:text-twinpy-neon transition-colors">{movie.title}</h3>
                           <p className="text-sm text-twinpy-muted">{rated.date}</p>
+                          <p className="text-sm text-twinpy-muted/80 mt-1 line-clamp-2">{rated.review}</p>
                         </div>
                       </div>
                       <div className="text-2xl font-bold text-twinpy-gold">
@@ -156,7 +151,7 @@ export default function ProfilePage() {
               })}
             </div>
           ) : (
-            <p className="text-twinpy-muted text-center py-10">Ты еще не давал обещаний кино.</p>
+            <p className="text-twinpy-muted text-center py-10">{t('noPromises')}</p>
           )}
         </div>
 
