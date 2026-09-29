@@ -1,8 +1,10 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect } from 'react';
 import { useI18n } from '@/lib/i18n';
+import BrandLogo from '@/components/layout/BrandLogo';
 
 export default function Header() {
   const { locale, setLocale, t } = useI18n();
@@ -21,24 +23,24 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-twinpy-surface/20 bg-twinpy-bg/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 min-h-20 py-3 flex flex-wrap items-center justify-between gap-3">
-        <Link href="/" className="text-3xl font-bold tracking-tighter select-none" aria-label="Twinpy">
-          <span className="text-twinpy-neon">Twin</span>
-          <span className="text-twinpy-turquoise">py</span>
-        </Link>
+        <BrandLogo />
 
         <nav className="order-3 basis-full md:order-none md:basis-auto flex justify-center items-center gap-2 sm:gap-3" aria-label="Primary navigation">
-          <Link href="/profile" className="rounded-full border border-twinpy-surface/60 px-4 py-2 text-sm text-twinpy-text transition-colors hover:border-twinpy-neon hover:text-twinpy-neon">
+          <Link href="/profile" className="twinpy-nav-link rounded-full border border-twinpy-surface/60 px-3 sm:px-4 py-2 text-sm text-twinpy-text transition-colors hover:border-twinpy-neon hover:text-twinpy-neon">
+            <Image src="/brand/04-profile-icon.svg" alt="" width={22} height={22} className="h-5 w-5 object-contain" />
             {t('navProfile')}
           </Link>
-          <Link href="/friends" className="rounded-full border border-twinpy-surface/60 px-4 py-2 text-sm text-twinpy-text transition-colors hover:border-twinpy-turquoise hover:text-twinpy-turquoise">
+          <Link href="/friends" className="twinpy-nav-link rounded-full border border-twinpy-surface/60 px-3 sm:px-4 py-2 text-sm text-twinpy-text transition-colors hover:border-twinpy-turquoise hover:text-twinpy-turquoise">
+            <Image src="/brand/05-group-icon.svg" alt="" width={22} height={22} className="h-5 w-5 object-contain" />
             {t('navFriends')}
           </Link>
         </nav>
 
         <div className="flex items-center gap-2">
-          <button type="button" onClick={toggleTheme} aria-label={t('theme')} className="rounded-full border border-twinpy-neon px-3 py-2 text-sm text-twinpy-neon transition-colors hover:bg-twinpy-neon hover:text-white">
-            <span className="hidden sm:inline">{t('theme')}</span>
-            <span className="sm:hidden">☼</span>
+          <button type="button" onClick={toggleTheme} aria-label={t('theme')} className="twinpy-theme-button rounded-full border border-twinpy-neon px-2.5 py-2 text-sm text-twinpy-neon transition-colors hover:bg-twinpy-neon hover:text-white">
+            <Image src="/brand/02-angel-cloud-icon.svg" alt="" width={26} height={26} className="theme-light-icon h-6 w-6 object-contain" />
+            <Image src="/brand/03-obsidian-cloud-icon.svg" alt="" width={26} height={26} className="theme-dark-icon h-6 w-6 object-contain" />
+            <span className="sr-only">{t('theme')}</span>
           </button>
           <button
             type="button"

@@ -34,6 +34,136 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.twinpy-logo {
+  position: relative;
+  display: block;
+  width: 196px;
+  height: 46px;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.twinpy-logo-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.twinpy-logo-compact {
+  opacity: 0;
+  transition: opacity 450ms ease 120ms;
+  pointer-events: none;
+}
+
+.twinpy-logo-full {
+  opacity: 1;
+  transition: opacity 650ms ease, filter 650ms ease;
+}
+
+.twinpy-logo:hover .twinpy-logo-full,
+.twinpy-logo:focus-visible .twinpy-logo-full {
+  opacity: 0;
+  filter: blur(2px);
+}
+
+.twinpy-logo:hover .twinpy-logo-compact,
+.twinpy-logo:focus-visible .twinpy-logo-compact {
+  opacity: 1;
+}
+
+.twinpy-glyph-other {
+  opacity: 0;
+}
+
+.twinpy-glyph-t,
+.twinpy-glyph-p,
+.twinpy-glyph-i-dot,
+.twinpy-p-counter-dot {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.twinpy-glyph-t {
+  transform: translate(0, 0);
+}
+
+.twinpy-glyph-p {
+  transform: translate(0, 0);
+}
+
+.twinpy-glyph-i-dot {
+  transform: translate(0, 0);
+  transform-origin: 1392px 135px;
+}
+
+.twinpy-p-counter-dot {
+  fill: #008295;
+  transform-origin: 1909px 347px;
+  transform: translate(0, 0);
+}
+
+.twinpy-logo:hover .twinpy-glyph-t,
+.twinpy-logo:focus-visible .twinpy-glyph-t {
+  transform: translate(19.66%, 0);
+}
+
+.twinpy-logo:hover .twinpy-glyph-p,
+.twinpy-logo:focus-visible .twinpy-glyph-p {
+  transform: translate(-8.95%, 0);
+}
+
+.twinpy-logo:hover .twinpy-glyph-i-dot,
+.twinpy-logo:focus-visible .twinpy-glyph-i-dot {
+  transform: translate(-2%, -12%);
+}
+
+.twinpy-logo:hover .twinpy-p-counter-dot,
+.twinpy-logo:focus-visible .twinpy-p-counter-dot {
+  transform: translate(-8.95%, -24.4%);
+}
+
+.twinpy-nav-link,
+.twinpy-theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+@media (max-width: 640px) {
+  .twinpy-logo {
+    width: 132px;
+    height: 32px;
+  }
+
+}
+
+.theme-dark-icon {
+  display: none;
+}
+
+.light .theme-light-icon {
+  display: none;
+}
+
+.light .theme-dark-icon {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinpy-logo-art,
+  .twinpy-logo-full,
+  .twinpy-logo-compact,
+  .twinpy-glyph-t,
+  .twinpy-glyph-p,
+  .twinpy-glyph-i-dot,
+  .twinpy-p-counter-dot {
+    transition: none;
+  }
+}
+
 /* Кастомный скроллбар в стиле Twinpy */
 ::-webkit-scrollbar {
   width: 8px;
