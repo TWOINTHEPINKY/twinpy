@@ -42,7 +42,19 @@ export default function BrandLogo() {
           <GlyphSlice {...glyphs.t} clipId="twinpy-clip-t" className="twinpy-glyph-t" />
           <GlyphSlice {...glyphs.p} clipId="twinpy-clip-p" className="twinpy-glyph-p" />
           <GlyphSlice {...glyphs.iDot} clipId="twinpy-clip-iDot" className="twinpy-glyph-i-dot" />
-          <circle className="twinpy-p-counter-dot" cx="1645" cy="166" r="27" />
+          <circle className="twinpy-p-counter-dot" cx="1907" cy="347" r="27" />
+          <g className="twinpy-t-fan" aria-hidden="true">
+            <GlyphSlice {...glyphs.t} clipId="twinpy-clip-t" className="twinpy-fan-glyph twinpy-fan-t-1" />
+            <GlyphSlice {...glyphs.t} clipId="twinpy-clip-t" className="twinpy-fan-glyph twinpy-fan-t-2" />
+            <GlyphSlice {...glyphs.t} clipId="twinpy-clip-t" className="twinpy-fan-glyph twinpy-fan-t-3" />
+            <GlyphSlice {...glyphs.t} clipId="twinpy-clip-t" className="twinpy-fan-glyph twinpy-fan-t-4" />
+          </g>
+          <g className="twinpy-p-fan" aria-hidden="true">
+            <GlyphSlice {...glyphs.p} clipId="twinpy-clip-p" className="twinpy-fan-glyph twinpy-fan-p-1" />
+            <GlyphSlice {...glyphs.p} clipId="twinpy-clip-p" className="twinpy-fan-glyph twinpy-fan-p-2" />
+            <GlyphSlice {...glyphs.p} clipId="twinpy-clip-p" className="twinpy-fan-glyph twinpy-fan-p-3" />
+            <GlyphSlice {...glyphs.p} clipId="twinpy-clip-p" className="twinpy-fan-glyph twinpy-fan-p-4" />
+          </g>
           <GlyphSlice {...glyphs.w} clipId="twinpy-clip-w" className="twinpy-glyph-other twinpy-glyph-w" />
           <GlyphSlice {...glyphs.i} clipId="twinpy-clip-i" className="twinpy-glyph-other twinpy-glyph-i" />
           <GlyphSlice {...glyphs.n} clipId="twinpy-clip-n" className="twinpy-glyph-other twinpy-glyph-n" />

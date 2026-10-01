@@ -96,12 +96,36 @@ body {
 .twinpy-glyph-i-dot {
   transform: translate(0, 0);
   transform-origin: 1392px 135px;
+  animation: twinpy-i-dot-rest 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .twinpy-p-counter-dot {
   fill: #008295;
   transform-origin: 1909px 347px;
   transform: translate(0, 0);
+}
+
+.twinpy-fan-glyph {
+  opacity: 0;
+  transform-box: view-box;
+  transform-origin: center;
+  transition: opacity 500ms ease, transform 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.twinpy-fan-t-1,
+.twinpy-fan-t-2,
+.twinpy-fan-t-3,
+.twinpy-fan-t-4 {
+  transform-origin: 770px 290px;
+  transform: translate(0, 0) scale(1);
+}
+
+.twinpy-fan-p-1,
+.twinpy-fan-p-2,
+.twinpy-fan-p-3,
+.twinpy-fan-p-4 {
+  transform-origin: 1910px 430px;
+  transform: translate(0, 0) scale(1);
 }
 
 .twinpy-logo:hover .twinpy-glyph-t,
@@ -116,12 +140,93 @@ body {
 
 .twinpy-logo:hover .twinpy-glyph-i-dot,
 .twinpy-logo:focus-visible .twinpy-glyph-i-dot {
-  transform: translate(-2%, -12%);
+  animation: twinpy-i-dot-hop 1500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .twinpy-logo:hover .twinpy-p-counter-dot,
 .twinpy-logo:focus-visible .twinpy-p-counter-dot {
-  transform: translate(-8.95%, -24.4%);
+  transform: translate(0, -275px);
+}
+
+.twinpy-logo:hover .twinpy-fan-glyph,
+.twinpy-logo:focus-visible .twinpy-fan-glyph {
+  opacity: 1;
+}
+
+.twinpy-logo:hover .twinpy-fan-t-1,
+.twinpy-logo:focus-visible .twinpy-fan-t-1 {
+  transform: translate(-420px, 0) scale(0.28);
+  opacity: 0.18;
+}
+
+.twinpy-logo:hover .twinpy-fan-t-2,
+.twinpy-logo:focus-visible .twinpy-fan-t-2 {
+  transform: translate(-300px, 0) scale(0.46);
+  opacity: 0.34;
+}
+
+.twinpy-logo:hover .twinpy-fan-t-3,
+.twinpy-logo:focus-visible .twinpy-fan-t-3 {
+  transform: translate(-175px, 0) scale(0.68);
+  opacity: 0.52;
+}
+
+.twinpy-logo:hover .twinpy-fan-t-4,
+.twinpy-logo:focus-visible .twinpy-fan-t-4 {
+  transform: translate(-70px, 0) scale(0.84);
+  opacity: 0.72;
+}
+
+.twinpy-logo:hover .twinpy-fan-p-1,
+.twinpy-logo:focus-visible .twinpy-fan-p-1 {
+  transform: translate(420px, 0) scale(0.28);
+  opacity: 0.18;
+}
+
+.twinpy-logo:hover .twinpy-fan-p-2,
+.twinpy-logo:focus-visible .twinpy-fan-p-2 {
+  transform: translate(300px, 0) scale(0.46);
+  opacity: 0.34;
+}
+
+.twinpy-logo:hover .twinpy-fan-p-3,
+.twinpy-logo:focus-visible .twinpy-fan-p-3 {
+  transform: translate(175px, 0) scale(0.68);
+  opacity: 0.52;
+}
+
+.twinpy-logo:hover .twinpy-fan-p-4,
+.twinpy-logo:focus-visible .twinpy-fan-p-4 {
+  transform: translate(70px, 0) scale(0.84);
+  opacity: 0.72;
+}
+
+@keyframes twinpy-i-dot-rest {
+  from,
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes twinpy-i-dot-hop {
+  0% {
+    transform: translate(0, 0);
+  }
+  18% {
+    transform: translate(-150px, 55px) rotate(12deg);
+  }
+  38% {
+    transform: translate(-305px, -10px) rotate(-10deg);
+  }
+  57% {
+    transform: translate(-455px, 38px) rotate(9deg);
+  }
+  76% {
+    transform: translate(-570px, -35px) rotate(-5deg);
+  }
+  100% {
+    transform: translate(-590px, -140px) rotate(0deg);
+  }
 }
 
 .twinpy-nav-link,
@@ -159,8 +264,10 @@ body {
   .twinpy-glyph-t,
   .twinpy-glyph-p,
   .twinpy-glyph-i-dot,
-  .twinpy-p-counter-dot {
+  .twinpy-p-counter-dot,
+  .twinpy-fan-glyph {
     transition: none;
+    animation: none;
   }
 }
 
